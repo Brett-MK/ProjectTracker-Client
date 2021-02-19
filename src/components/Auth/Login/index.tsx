@@ -26,7 +26,6 @@ const Login = () => {
       setLoading(true);
       await login(email, password);
 
-      console.log(await getIdToken());
       setToken(await getIdToken());
       const response = await dispatch(fetchProjects());
       const projects = unwrapResult(response);

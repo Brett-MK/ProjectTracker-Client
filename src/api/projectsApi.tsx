@@ -3,7 +3,6 @@ import { Task } from "./tasksApi";
 
 const baseUrl = process.env.REACT_APP_DB_BASE;
 
-console.log(baseUrl);
 export interface Project {
   _id: string;
   title: string;
