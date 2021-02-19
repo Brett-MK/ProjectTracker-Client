@@ -1,5 +1,9 @@
 import axios from "axios";
 import { Task } from "./tasksApi";
+
+const baseUrl = process.env.REACT_APP_DB_BASE;
+
+console.log(baseUrl);
 export interface Project {
   _id: string;
   title: string;
@@ -15,7 +19,7 @@ export interface BasicProject {
 
 export async function getProjects(jwtToken: string) {
   const response = await axios.request<Project[]>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: "/projects",
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -27,7 +31,7 @@ export async function getProjects(jwtToken: string) {
 
 export async function addProject(project: BasicProject, jwtToken: string) {
   const response = await axios.request<Project>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: "/projects",
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -41,7 +45,7 @@ export async function addProject(project: BasicProject, jwtToken: string) {
 
 export async function updateProject(project: Project, jwtToken: string) {
   const response = await axios.request<Project>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: `/projects/${project._id}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -55,7 +59,7 @@ export async function updateProject(project: Project, jwtToken: string) {
 
 export async function deleteProject(projectId: string, jwtToken: string) {
   const response = await axios.request<Project>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: `/projects/${projectId}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,

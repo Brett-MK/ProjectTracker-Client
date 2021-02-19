@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseUrl = process.env.REACT_APP_DB_BASE;
+
 export interface Task {
   _id: string;
   title: string;
@@ -22,7 +24,7 @@ export interface BasicTask {
 
 export async function getTasks(projectId: string, jwtToken: string) {
   const response = await axios.request<Task[]>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: "/tasks",
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -39,7 +41,7 @@ export async function addTask(
   jwtToken: string
 ) {
   const response = await axios.request<Task>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: "/tasks",
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -57,7 +59,7 @@ export async function updateTask(
   jwtToken: string
 ) {
   const response = await axios.request<Task>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: `/tasks/${task._id}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
@@ -75,7 +77,7 @@ export async function deleteTask(
   jwtToken: string
 ) {
   const response = await axios.request<Task>({
-    baseURL: "http://localhost:5000/api",
+    baseURL: baseUrl,
     url: `/tasks/${task._id}`,
     headers: {
       Authorization: `Bearer ${jwtToken}`,
