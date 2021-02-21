@@ -2,11 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faTable } from "@fortawesome/free-solid-svg-icons";
 import Button from "react-bootstrap/Button";
-import {
-  DataGrid,
-  ValueFormatterParams,
-  CellClassParams,
-} from "@material-ui/data-grid";
+import { DataGrid, ValueFormatterParams } from "@material-ui/data-grid";
 import Chip from "@material-ui/core/Chip";
 import { Task } from "../../api/tasksApi";
 import BugReportIcon from "@material-ui/icons/BugReport";
