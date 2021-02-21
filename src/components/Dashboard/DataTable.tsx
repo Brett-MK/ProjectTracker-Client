@@ -143,7 +143,17 @@ const DataTable = ({ tasks, pageSize, height }: Props) => {
 
       <div className="card-body">
         <div style={{ height: height, width: "100%" }}>
-          <DataGrid rows={rows} columns={columns} pageSize={pageSize} />
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            pageSize={pageSize}
+            sortModel={[
+              {
+                field: "status",
+                sort: "asc",
+              },
+            ]}
+          />
         </div>
       </div>
     </div>
