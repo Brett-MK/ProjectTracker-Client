@@ -36,19 +36,20 @@ export const BarChart = ({ project }: Props) => {
 
     const chartData = getChartData();
 
+    const maxCount = Math.max.apply(Math, chartData);
+
     if (chart != null && chart.data.datasets != null) {
       chart.data.datasets[0].data = chartData;
+      chart.options!.scales!.yAxes![0]!.ticks!.max = maxCount;
       chart.update();
       setChart(chart);
       return;
     }
 
-    const maxCount = Math.max.apply(Math, chartData);
-
     const newChart = new Chart(chartRef.current, {
       type: "bar",
       data: {
-        labels: ["Issue", "Feature Request", "Documentation"],
+        labels: ["Issue", "Feature Request", "Document Change"],
         datasets: [
           {
             label: "Tasks",

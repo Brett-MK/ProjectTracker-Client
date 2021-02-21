@@ -53,20 +53,23 @@ const AreaChart = ({ project }: Props) => {
     if (null === chartRef.current || project === null) return;
     const dateLabels = getChartData();
 
+    const countArray = dateLabels
+      .map((t) => t.bugCount)
+      .concat(dateLabels.map((t) => t.featureCount))
+      .concat(dateLabels.map((t) => t.docCount));
+
+    const maxCount = Math.max.apply(Math, countArray);
+
     if (chart != null && chart.data.datasets != null) {
       chart.data.labels = dateLabels.map((t) => t.label);
-      chart.data.datasets[0].data = dateLabels.map((t) => t.bugCount);
-      chart.data.datasets[1].data = dateLabels.map((t) => t.featureCount);
-      chart.data.datasets[2].data = dateLabels.map((t) => t.docCount);
+      chart.options!.scales!.yAxes![0]!.ticks!.max = maxCount;
+      chart.data.datasets[0].data = dateLabels.map((t) => t.docCount);
+      chart.data.datasets[1].data = dateLabels.map((t) => t.bugCount);
+      chart.data.datasets[2].data = dateLabels.map((t) => t.featureCount);
       chart.update();
       setChart(chart);
       return;
     }
-
-    // const maxCount = Math.max.apply(
-    //   Math,
-    //   dateLabels.map((t) => t.count)
-    // );
 
     const newChart = new Chart(chartRef.current, {
       type: "line",
@@ -74,9 +77,9 @@ const AreaChart = ({ project }: Props) => {
         labels: dateLabels.map((t) => t.label),
         datasets: [
           {
-            label: "Documentation",
+            label: "Document Change",
             lineTension: 0.3,
-            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            backgroundColor: "rgba(255,255,255,0.2)",
             borderColor: "#007bff",
             pointRadius: 5,
             pointBackgroundColor: "#007bff",
@@ -90,7 +93,7 @@ const AreaChart = ({ project }: Props) => {
           {
             label: "Issue",
             lineTension: 0.3,
-            backgroundColor: "rgba(0, 123, 255, 0.2)",
+            backgroundColor: "rgba(255,255,255,0.2)",
             borderColor: "#dc3545",
             pointRadius: 5,
             pointBackgroundColor: "#dc3545",
@@ -104,7 +107,7 @@ const AreaChart = ({ project }: Props) => {
           {
             label: "Feature Request",
             lineTension: 0.3,
-            backgroundColor: "rgba(2,117,216,0.2)",
+            backgroundColor: "rgba(255,255,255,0.2)",
             borderColor: "#28a745",
             pointRadius: 5,
             pointBackgroundColor: "#28a745",
@@ -136,8 +139,7 @@ const AreaChart = ({ project }: Props) => {
             {
               ticks: {
                 min: 0,
-                max: 10,
-                // max: maxCount === 0 ? 10 : maxCount * 1.5,
+                max: maxCount === 0 ? 10 : maxCount,
                 maxTicksLimit: 5,
               },
               gridLines: {
