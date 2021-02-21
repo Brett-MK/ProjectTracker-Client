@@ -19,7 +19,7 @@ interface TParams {
 const Header = ({ match }: RouteComponentProps<TParams>) => {
   const [, setError] = useState("");
 
-  const { logout, currentUser } = useAuth();
+  const { logout } = useAuth();
   const projects = useSelector(getAllProjects());
   const selectedProject = useSelector(getProjectById(match.params.projectId));
 

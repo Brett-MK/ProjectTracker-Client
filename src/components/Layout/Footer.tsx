@@ -9,14 +9,10 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { useSelector } from "react-redux";
-import { getAllProjects } from "../../store/projects";
 
 const Footer = () => {
   const { logout, currentUser } = useAuth();
   const [, setError] = useState("");
-
-  const projects = useSelector(getAllProjects());
   const history = useHistory();
 
   async function handleLogout() {
