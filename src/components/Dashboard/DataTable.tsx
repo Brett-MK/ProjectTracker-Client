@@ -32,9 +32,10 @@ const DataTable = ({ tasks, pageSize, height }: Props) => {
       headerName: "Title",
       headerClassName: "bg-light",
       width: 260,
-
       renderCell: (params: ValueFormatterParams) => (
-        <Link to={`tasks/${params.row.id}`}>{params.row.title}</Link>
+        <Link to={`tasks/${params.row.id}`} className="text-truncate">
+          {params.row.title}
+        </Link>
       ),
     },
     {
