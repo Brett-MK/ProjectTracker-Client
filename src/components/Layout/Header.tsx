@@ -30,7 +30,7 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
   return (
     <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
-        Projectivity
+        Projectiviti
       </Link>
 
       {currentUser ? (

@@ -39,7 +39,7 @@ const Home = () => {
     <div className="body-home">
       <div className="navbar-home">
         <div className="container-home flex-home">
-          <h1 className="logo h1-home">Projectivity.</h1>
+          <h1 className="logo h1-home">Projectiviti.</h1>
           <nav>
             <ul className="ul-home">
               <li>
@@ -94,7 +94,7 @@ const Home = () => {
             <h1 className="h1-home">Easier Project Tracking</h1>
             <p className="p-home">
               Track projects of all kinds, from large scale enterprise projects
-              to individual home projects. Try Projectivity today.
+              to individual home projects. Try Projectiviti today.
             </p>
           </div>
           <div className="card-home showcase-form">
