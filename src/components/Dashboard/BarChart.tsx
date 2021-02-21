@@ -52,7 +52,7 @@ export const BarChart = ({ project }: Props) => {
         datasets: [
           {
             label: "Tasks",
-            backgroundColor: ["#dc3545", "#28a745", "rgba(2,117,216,1)"],
+            backgroundColor: ["#dc3545", "#28a745", "#007bff"],
             borderColor: "rgba(2,117,216,1)",
             data: chartData,
           },
