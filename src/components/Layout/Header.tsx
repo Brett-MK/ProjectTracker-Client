@@ -21,7 +21,6 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
     setError("");
     try {
       await logout();
-      history.push("/");
     } catch {
       setError("Failed to log out");
     }

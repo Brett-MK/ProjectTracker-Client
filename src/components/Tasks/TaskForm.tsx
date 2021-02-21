@@ -85,7 +85,6 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
         <Form.Group as={Col} controlId="exampleForm.ControlInput4">
           <Form.Label>Assigned To</Form.Label>
           <Form.Control
-            required
             type="text"
             placeholder="Assigned To"
             value={assignedTo}

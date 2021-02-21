@@ -43,34 +43,16 @@ const Footer = () => {
               </Link>
             </li>
             {currentUser ? (
-              <>
-                {projects.length !== 0 ? (
-                  <li>
-                    <Link
-                      className="a-home"
-                      to={`/projects/${projects[0]._id}/dashboard`}
-                    >
-                      Dashboard
-                    </Link>
-                  </li>
-                ) : (
-                  <li>
-                    <Link className="a-home" to="/projects/new">
-                      New Project
-                    </Link>
-                  </li>
-                )}
-                <li>
-                  <a
-                    className="a-home"
-                    href="/"
-                    style={{ cursor: "pointer" }}
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </a>
-                </li>
-              </>
+              <li>
+                <a
+                  className="a-home"
+                  href="/"
+                  style={{ cursor: "pointer" }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </a>
+              </li>
             ) : (
               <li>
                 <Link className="a-home" to="/login">
