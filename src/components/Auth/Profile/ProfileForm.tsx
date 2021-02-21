@@ -15,7 +15,7 @@ interface Props {
   onSubmit: (user: User) => void;
 }
 
-export const EditProfileForm = ({ user, onSubmit }: Props) => {
+export const ProfileForm = ({ user, onSubmit }: Props) => {
   const [name, setName] = useState(user.displayName);
   const [email, setEmail] = useState(user.email);
   const [password, setPassword] = useState("");

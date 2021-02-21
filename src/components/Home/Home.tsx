@@ -17,6 +17,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useSelector } from "react-redux";
 import { getAllProjects } from "../../store/projects";
 import Footer from "../Layout/Footer";
+import ContactForm from "./ContactForm";
 
 const Home = () => {
   const { logout, currentUser } = useAuth();
@@ -99,40 +100,7 @@ const Home = () => {
           </div>
           <div className="card-home showcase-form">
             <h2 className="h2-home">Contact Us</h2>
-            <form>
-              <div className="form-control-home">
-                <input
-                  className="input-home"
-                  type="text"
-                  name="name"
-                  placeholder="Name"
-                  required
-                />
-              </div>
-              <div className="form-control-home">
-                <input
-                  className="input-home"
-                  type="text"
-                  name="company"
-                  placeholder="Company Name"
-                  required
-                />
-              </div>
-              <div className="form-control-home">
-                <input
-                  className="input-home"
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  required
-                />
-              </div>
-              <input
-                type="submit"
-                value="Send"
-                className="btn-home btn-primary-home input-home"
-              />
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>

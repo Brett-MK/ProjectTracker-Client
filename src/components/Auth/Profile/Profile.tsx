@@ -1,6 +1,6 @@
 import { useAuth } from "../../../contexts/AuthContext";
 import { useState } from "react";
-import { EditProfileForm } from "./EditProfileForm";
+import { ProfileForm } from "./ProfileForm";
 import { useHistory } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import withAuthLayout from "../../Layout/withAuthLayout";
@@ -56,7 +56,7 @@ const Profile = () => {
               </Alert>
             )}
             <div className="card-body">
-              <EditProfileForm user={currentUser} onSubmit={handleSubmit} />
+              <ProfileForm user={currentUser} onSubmit={handleSubmit} />
             </div>
           </div>
         </div>
