@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
+
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { BasicProject, Project } from "../../api/projectsApi";
 import { useHistory } from "react-router-dom";
+import { TinyMceEditor } from "../Common/TinyMceEditor";
 
 interface Props {
   project?: Project;
@@ -45,22 +46,7 @@ const ProjectForm = ({ project, onSubmit, isNewProject = false }: Props) => {
         />
       </Form.Group>
       <Form.Label>Description</Form.Label>
-      <Editor
-        apiKey={process.env.REACT_APP_TINYMCEKEY}
-        init={{
-          height: 400,
-          menubar: false,
-          plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste code help wordcount",
-          ],
-          toolbar:
-            "undo redo | formatselect | bold italic backcolor alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
-        }}
-        value={description}
-        onEditorChange={(e) => setDescription(e)}
-      />
+      <TinyMceEditor value={description} onEditorChange={setDescription} />
       <Button variant="primary" className="mt-4" type="submit">
         Save
       </Button>
