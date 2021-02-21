@@ -32,7 +32,7 @@ const Footer = () => {
     <footer className="footer bg-dark-home py-5">
       <div className="container-home grid-home grid-3-home">
         <div>
-          <h1 className="h1-home">Projecti.</h1>
+          <h1 className="h1-home">Projectivity.</h1>
           <p className="p-home">Copyright &copy; 2021</p>
         </div>
         <nav>

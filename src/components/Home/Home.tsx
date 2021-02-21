@@ -8,9 +8,8 @@ import {
   faBug,
   faNewspaper,
   faProjectDiagram,
-  faRibbon,
+  faPlus,
   faLaptop,
-  faHouseUser,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { Link, useHistory } from "react-router-dom";
@@ -40,7 +39,7 @@ const Home = () => {
     <div className="body-home">
       <div className="navbar-home">
         <div className="container-home flex-home">
-          <h1 className="logo h1-home">Projecti.</h1>
+          <h1 className="logo h1-home">Projectivity.</h1>
           <nav>
             <ul className="ul-home">
               <li>
@@ -95,7 +94,7 @@ const Home = () => {
             <h1 className="h1-home">Easier Project Tracking</h1>
             <p className="p-home">
               Track projects of all kinds, from large scale enterprise projects
-              to individual home projects. Try Projecti today.
+              to individual home projects. Try Projectivity today.
             </p>
           </div>
           <div className="card-home showcase-form">
@@ -166,10 +165,9 @@ const Home = () => {
       <section className="cloud bg-primary-home my-2 py-2">
         <div className="container-home grid-home">
           <div className="text-center-home">
-            <h2 className="lg-home h2-home">Extreme Project Tracking</h2>
+            <h2 className="lg-home h2-home">Efficient Project Tracking</h2>
             <p className="lead-home my-1 p-home">
-              Project traking like you've never seen. Fast, efficient and,
-              scalable
+              Track your projects from start to finish efficiently.
             </p>
           </div>
           <img className="img-home" src={cloud} alt="" />
@@ -187,7 +185,7 @@ const Home = () => {
               <FontAwesomeIcon
                 style={{ color: "#3F873F" }}
                 className="fas fa-3x"
-                icon={faRibbon}
+                icon={faPlus}
               />
             </div>
           </div>
@@ -218,16 +216,6 @@ const Home = () => {
                 style={{ color: "#00ADF3" }}
                 className="fas fa-3x"
                 icon={faLaptop}
-              />
-            </div>
-          </div>
-          <div className="card-home">
-            <h4>Chores</h4>
-            <div className="text-center-home">
-              <FontAwesomeIcon
-                style={{ color: "#C2392C" }}
-                className="fas fa-3x"
-                icon={faHouseUser}
               />
             </div>
           </div>
