@@ -48,11 +48,11 @@ export const BarChart = ({ project }: Props) => {
     const newChart = new Chart(chartRef.current, {
       type: "bar",
       data: {
-        labels: ["Bug", "Feature Request", "Documentation"],
+        labels: ["Issue", "Feature Request", "Documentation"],
         datasets: [
           {
-            label: "Types",
-            backgroundColor: "rgba(2,117,216,1)",
+            label: "Tasks",
+            backgroundColor: ["#dc3545", "#28a745", "rgba(2,117,216,1)"],
             borderColor: "rgba(2,117,216,1)",
             data: chartData,
           },
