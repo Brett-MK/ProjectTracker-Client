@@ -1,10 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import ProjectsDropdown from "./ProjectsDropdown";
 import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import { useHistory, RouteComponentProps } from "react-router";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import { useSelector } from "react-redux";
+import { getAllProjects } from "../../store/projects";
+import { Project } from "../../api/projectsApi";
+import { getProjectById } from "../../store/projects";
 
 interface TParams {
   projectId: string;
@@ -14,6 +20,8 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
   const [, setError] = useState("");
 
   const { logout, currentUser } = useAuth();
+  const projects = useSelector(getAllProjects());
+  const selectedProject = useSelector(getProjectById(match.params.projectId));
 
   const history = useHistory();
 
@@ -26,50 +34,68 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
     }
   }
 
+  const selectDeProject = (project: Project) => {
+    history.push(`/projects/${project._id}/dashboard`);
+  };
+
   return (
-    <nav className="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-      <Link className="navbar-brand" to="/">
+    <Navbar
+      expand="lg"
+      bg="dark"
+      variant="dark"
+      style={{ zIndex: 1039, position: "sticky", top: "0" }}
+    >
+      <Link className="navbar-brand mr-lg-7" to="/">
         Projectiviti
       </Link>
 
-      {currentUser ? (
-        <ProjectsDropdown selectedProjectId={match.params.projectId} />
-      ) : (
-        ""
-      )}
-
-      <form className="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></form>
-      <ul className="navbar-nav ml-auto ml-md-0">
-        {currentUser ? (
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              id="userDropdown"
-              href="/"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              <FontAwesomeIcon icon={faUser} />
-            </a>
-            <div className="dropdown-menu dropdown-menu-right">
-              <Link className="dropdown-item" to="/profile">
-                Profile
-              </Link>
-              <div className="dropdown-divider"></div>
-              <a href="/" className="dropdown-item" onClick={handleLogout}>
-                Logout
-              </a>
-            </div>
-          </li>
-        ) : (
-          <Link to="/login">
-            <button className="btn btn-primary">Login</button>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Link className="nav-link" to="/">
+            Home
           </Link>
-        )}
-      </ul>
-    </nav>
+
+          <Link
+            className="nav-link"
+            to={`/projects/${selectedProject?._id}/dashboard`}
+          >
+            Dashboard
+          </Link>
+
+          <Link
+            className="nav-link"
+            to={`/projects/${selectedProject?._id}/tasks`}
+          >
+            All Tasks
+          </Link>
+        </Nav>
+        <Nav>
+          <NavDropdown title="Select a Project" id="basic-nav-dropdown">
+            {projects.map((project) => (
+              <NavDropdown.Item onClick={() => selectDeProject(project)}>
+                {project.title}
+              </NavDropdown.Item>
+            ))}
+          </NavDropdown>
+        </Nav>
+        <Nav>
+          <NavDropdown
+            alignRight
+            title={<FontAwesomeIcon icon={faUser} />}
+            id="basic-nav-dropdown"
+          >
+            <Link className="dropdown-item" to="/profile">
+              Profile
+            </Link>
+            <div className="dropdown-divider"></div>
+            <Link to="/" className="dropdown-item" onClick={handleLogout}>
+              Logout
+            </Link>
+          </NavDropdown>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 };
 
