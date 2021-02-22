@@ -7,6 +7,7 @@ export interface Task {
   title: string;
   description: string;
   created: string;
+  closedOn: string;
   priority: string;
   assignedTo: string;
   status: string;

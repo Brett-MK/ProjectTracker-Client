@@ -17,15 +17,24 @@ const AreaChart = ({ project }: Props) => {
       var result = [];
       for (var i = 7; i >= 0; i -= 1) {
         var d = new Date();
+        console.log(d.getDate());
         d.setDate(d.getDate() - i);
 
         let count = 0;
         for (let index = 0; index < project.tasks.length; index++) {
           if (
-            new Date(parseInt(project.tasks[index].created)) <= d &&
-            project.tasks[index].status !== "Closed"
+            new Date(parseInt(project.tasks[index].created)).getDate() <=
+            d.getDate()
           ) {
-            count++;
+            if (
+              project.tasks[index].status === "Closed" &&
+              new Date(parseInt(project.tasks[index].closedOn)).getDate() >
+                d.getDate()
+            ) {
+              count++;
+            } else if (project.tasks[index].status !== "Closed") {
+              count++;
+            }
           }
         }
 
