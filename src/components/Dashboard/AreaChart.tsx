@@ -62,7 +62,8 @@ const AreaChart = ({ project }: Props) => {
 
     if (chart != null && chart.data.datasets != null) {
       chart.data.labels = dateLabels.map((t) => t.label);
-      chart.options!.scales!.yAxes![0]!.ticks!.max = maxCount;
+      chart.options!.scales!.yAxes![0]!.ticks!.max =
+        maxCount === 0 ? 10 : maxCount;
       chart.data.datasets[0].data = dateLabels.map((t) => t.docCount);
       chart.data.datasets[1].data = dateLabels.map((t) => t.bugCount);
       chart.data.datasets[2].data = dateLabels.map((t) => t.featureCount);

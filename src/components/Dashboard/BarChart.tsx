@@ -39,7 +39,8 @@ export const BarChart = ({ project }: Props) => {
 
     if (chart != null && chart.data.datasets != null) {
       chart.data.datasets[0].data = chartData;
-      chart.options!.scales!.yAxes![0]!.ticks!.max = maxCount;
+      chart.options!.scales!.yAxes![0]!.ticks!.max =
+        maxCount === 0 ? 10 : maxCount;
       chart.update();
       setChart(chart);
       return;
@@ -77,7 +78,7 @@ export const BarChart = ({ project }: Props) => {
             {
               ticks: {
                 min: 0,
-                max: maxCount === 0 ? 10 : maxCount * 1.5,
+                max: maxCount === 0 ? 10 : maxCount,
                 maxTicksLimit: 5,
               },
               gridLines: {
