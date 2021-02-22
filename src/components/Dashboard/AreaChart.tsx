@@ -19,31 +19,19 @@ const AreaChart = ({ project }: Props) => {
         var d = new Date();
         d.setDate(d.getDate() - i);
 
-        let bugCount = 0;
-        let featureCount = 0;
-        let docCount = 0;
+        let count = 0;
         for (let index = 0; index < project.tasks.length; index++) {
           if (
             new Date(parseInt(project.tasks[index].created)) <= d &&
             project.tasks[index].status !== "Closed"
           ) {
-            if (project.tasks[index].type === "Issue") {
-              bugCount++;
-            }
-            if (project.tasks[index].type === "Feature Request") {
-              featureCount++;
-            }
-            if (project.tasks[index].type === "Document Change") {
-              docCount++;
-            }
+            count++;
           }
         }
 
         result.push({
           label: d.toLocaleDateString(),
-          bugCount,
-          featureCount,
-          docCount,
+          count,
         });
       }
 
@@ -53,20 +41,16 @@ const AreaChart = ({ project }: Props) => {
     if (null === chartRef.current || project === null) return;
     const dateLabels = getChartData();
 
-    const countArray = dateLabels
-      .map((t) => t.bugCount)
-      .concat(dateLabels.map((t) => t.featureCount))
-      .concat(dateLabels.map((t) => t.docCount));
-
-    const maxCount = Math.max.apply(Math, countArray);
+    const maxCount = Math.max.apply(
+      Math,
+      dateLabels.map((t) => t.count)
+    );
 
     if (chart != null && chart.data.datasets != null) {
       chart.data.labels = dateLabels.map((t) => t.label);
       chart.options!.scales!.yAxes![0]!.ticks!.max =
         maxCount === 0 ? 10 : maxCount;
-      chart.data.datasets[0].data = dateLabels.map((t) => t.docCount);
-      chart.data.datasets[1].data = dateLabels.map((t) => t.bugCount);
-      chart.data.datasets[2].data = dateLabels.map((t) => t.featureCount);
+      chart.data.datasets[0].data = dateLabels.map((t) => t.count);
       chart.update();
       setChart(chart);
       return;
@@ -78,7 +62,7 @@ const AreaChart = ({ project }: Props) => {
         labels: dateLabels.map((t) => t.label),
         datasets: [
           {
-            label: "Document Change",
+            label: "Tasks",
             lineTension: 0.3,
             backgroundColor: "rgba(255,255,255,0.2)",
             borderColor: "#007bff",
@@ -89,35 +73,7 @@ const AreaChart = ({ project }: Props) => {
             pointHoverBackgroundColor: "#007bff",
             pointHitRadius: 50,
             pointBorderWidth: 2,
-            data: dateLabels.map((t) => t.docCount),
-          },
-          {
-            label: "Issue",
-            lineTension: 0.3,
-            backgroundColor: "rgba(255,255,255,0.2)",
-            borderColor: "#dc3545",
-            pointRadius: 5,
-            pointBackgroundColor: "#dc3545",
-            pointBorderColor: "rgba(255,255,255,0.8)",
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "#dc3545",
-            pointHitRadius: 50,
-            pointBorderWidth: 2,
-            data: dateLabels.map((t) => t.bugCount),
-          },
-          {
-            label: "Feature Request",
-            lineTension: 0.3,
-            backgroundColor: "rgba(255,255,255,0.2)",
-            borderColor: "#28a745",
-            pointRadius: 5,
-            pointBackgroundColor: "#28a745",
-            pointBorderColor: "rgba(255,255,255,0.8)",
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "#28a745",
-            pointHitRadius: 50,
-            pointBorderWidth: 2,
-            data: dateLabels.map((t) => t.featureCount),
+            data: dateLabels.map((t) => t.count),
           },
         ],
       },
