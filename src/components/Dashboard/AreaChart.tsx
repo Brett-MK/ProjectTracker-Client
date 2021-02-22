@@ -128,7 +128,7 @@ const AreaChart = ({ project }: Props) => {
       <div className="card mb-4">
         <div className="card-header">
           <FontAwesomeIcon className="mr-1" icon={faChartArea} />
-          Task Progress
+          Task Progress Past Week
         </div>
         <div className="card-body">
           <canvas
