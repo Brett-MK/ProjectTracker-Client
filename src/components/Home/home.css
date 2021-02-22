@@ -322,7 +322,7 @@ pre {
   }
 
   .showcase-text {
-    margin-top: 40px;
+    margin: 40px;
     text-align: center;
     animation: slideInFromTop 1s ease-in;
   }
@@ -367,11 +367,11 @@ pre {
     overflow: hidden;
   }
 
-  .navbar-home .flex {
+  .navbar-home .flex-home {
     flex-direction: column;
   }
 
-  .navbar-home ul {
+  .navbar-home .ul-home {
     padding: 10px;
     background-color: rgba(0, 0, 0, 0.1);
   }
