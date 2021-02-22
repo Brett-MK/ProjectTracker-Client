@@ -38,7 +38,7 @@ const DataTable = ({ tasks, pageSize, height }: Props) => {
       field: "status",
       headerName: "Status",
       headerClassName: "bg-light",
-      width: 302,
+      width: 260,
       renderCell: (params: ValueFormatterParams) => {
         if (params.row.status === "Open") {
           return (
