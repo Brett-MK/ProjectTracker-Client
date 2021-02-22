@@ -101,8 +101,8 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
               onChange={(e) => setStatus(e.target.value)}
             >
               <option>Open</option>
-              <option>Closed</option>
               <option>Active</option>
+              <option>Closed</option>
             </Form.Control>
           </Form.Group>
         ) : (
