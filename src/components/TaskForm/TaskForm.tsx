@@ -101,7 +101,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
           ""
         )}
         <Form.Group as={Col}>
-          <Form.Label>Assigned To</Form.Label>
+          <Form.Label>Assigned</Form.Label>
           <Form.Control
             type="text"
             placeholder="Assigned To"
