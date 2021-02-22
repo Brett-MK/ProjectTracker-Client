@@ -17,15 +17,14 @@ export const BarChart = ({ project }: Props) => {
       let results = [0, 0, 0];
 
       project.tasks.forEach((task) => {
-        if (task.type === "Bug" && task.status !== "Closed") {
-          results[0]++;
-        } else if (
-          task.type === "Feature Request" &&
-          task.status !== "Closed"
-        ) {
-          results[1]++;
-        } else if (task.type === "Documentation" && task.status !== "Closed") {
-          results[2]++;
+        if (task.status !== "Closed") {
+          if (task.type === "Issue") {
+            results[0]++;
+          } else if (task.type === "Feature Request") {
+            results[1]++;
+          } else if (task.type === "Document Change") {
+            results[2]++;
+          }
         }
       });
 

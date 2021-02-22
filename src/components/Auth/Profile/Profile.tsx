@@ -43,7 +43,7 @@ const Profile = () => {
   if (!currentUser) return null;
 
   return (
-    <div className="container">
+    <div className="container mb-5">
       <div className="row justify-content-center">
         <div className="col-lg-10 mt-4">
           <div className="card shadow-lg border-0 rounded-lg mt-5">

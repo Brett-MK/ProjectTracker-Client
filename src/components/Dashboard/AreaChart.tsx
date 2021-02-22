@@ -27,13 +27,13 @@ const AreaChart = ({ project }: Props) => {
             new Date(parseInt(project.tasks[index].created)) <= d &&
             project.tasks[index].status !== "Closed"
           ) {
-            if (project.tasks[index].type === "Bug") {
+            if (project.tasks[index].type === "Issue") {
               bugCount++;
             }
             if (project.tasks[index].type === "Feature Request") {
               featureCount++;
             }
-            if (project.tasks[index].type === "Documentation") {
+            if (project.tasks[index].type === "Document Change") {
               docCount++;
             }
           }

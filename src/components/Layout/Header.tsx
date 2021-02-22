@@ -2,8 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
-import { useState } from "react";
-import { useHistory, RouteComponentProps } from "react-router";
+import { useHistory, RouteComponentProps } from "react-router-dom";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -17,8 +16,6 @@ interface TParams {
 }
 
 const Header = ({ match }: RouteComponentProps<TParams>) => {
-  const [, setError] = useState("");
-
   const { logout } = useAuth();
   const projects = useSelector(getAllProjects());
   const selectedProject = useSelector(getProjectById(match.params.projectId));
@@ -26,12 +23,7 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
   const history = useHistory();
 
   async function handleLogout() {
-    setError("");
-    try {
-      await logout();
-    } catch {
-      setError("Failed to log out");
-    }
+    await logout();
   }
 
   const selectDeProject = (project: Project) => {
@@ -73,7 +65,10 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
         <Nav>
           <NavDropdown title="Select a Project" id="basic-nav-dropdown">
             {projects.map((project) => (
-              <NavDropdown.Item onClick={() => selectDeProject(project)}>
+              <NavDropdown.Item
+                onClick={() => selectDeProject(project)}
+                key={project._id}
+              >
                 {project.title}
               </NavDropdown.Item>
             ))}

@@ -73,7 +73,7 @@ const DataTable = ({ tasks, pageSize, height }: Props) => {
       headerClassName: "bg-light",
       width: 260,
       renderCell: (params: ValueFormatterParams) => {
-        if (params.row.type === "Bug") {
+        if (params.row.type === "Issue") {
           return (
             <Chip
               label={params.row.type}

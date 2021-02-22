@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Editor } from "@tinymce/tinymce-react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Col } from "react-bootstrap";
 import { Task, BasicTask } from "../../api/tasksApi";
 import { useHistory } from "react-router-dom";
+import { TinyMceEditor } from "../Common/TinyMceEditor";
 
 interface Props {
   task?: Task;
@@ -41,7 +41,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="exampleForm.ControlInput1">
+      <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
           required
@@ -52,7 +52,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
         />
       </Form.Group>
       <Form.Row>
-        <Form.Group as={Col} controlId="exampleForm.ControlInput2">
+        <Form.Group as={Col}>
           <Form.Label>Priority</Form.Label>
           <Form.Control
             required
@@ -68,7 +68,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
             <option>5</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group as={Col} controlId="exampleForm.ControlInput3">
+        <Form.Group as={Col}>
           <Form.Label>Type</Form.Label>
           <Form.Control
             required
@@ -77,12 +77,12 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
             onChange={(e) => setType(e.target.value)}
           >
             <option value="">Choose...</option>
-            <option>Bug</option>
+            <option>Issue</option>
             <option>Feature Request</option>
-            <option>Documentation</option>
+            <option>Document Change</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group as={Col} controlId="exampleForm.ControlInput4">
+        <Form.Group as={Col}>
           <Form.Label>Assigned To</Form.Label>
           <Form.Control
             type="text"
@@ -92,7 +92,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
           />
         </Form.Group>
         {!isNewTask ? (
-          <Form.Group as={Col} controlId="exampleForm.ControlInput5">
+          <Form.Group as={Col}>
             <Form.Label>Status</Form.Label>
             <Form.Control
               required
@@ -110,22 +110,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
         )}
       </Form.Row>
       <Form.Label>Description</Form.Label>
-      <Editor
-        apiKey={process.env.REACT_APP_TINYMCEKEY}
-        init={{
-          height: 400,
-          menubar: false,
-          plugins: [
-            "advlist autolink lists link image charmap print preview anchor",
-            "searchreplace visualblocks code fullscreen",
-            "insertdatetime media table paste code help wordcount",
-          ],
-          toolbar:
-            "undo redo | formatselect | bold italic backcolor alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
-        }}
-        value={description}
-        onEditorChange={(e) => setDescription(e)}
-      />
+      <TinyMceEditor value={description} onEditorChange={setDescription} />
       <Button variant="primary" className="mt-4" type="submit">
         Save
       </Button>

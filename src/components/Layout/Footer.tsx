@@ -7,19 +7,17 @@ import {
   faInstagram,
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const Footer = () => {
   const { logout, currentUser } = useAuth();
   const [, setError] = useState("");
-  const history = useHistory();
 
   async function handleLogout() {
     setError("");
     try {
       await logout();
-      history.push("/");
     } catch {
       setError("Failed to log out");
     }
@@ -40,14 +38,14 @@ const Footer = () => {
             </li>
             {currentUser ? (
               <li>
-                <a
+                <Link
                   className="a-home"
-                  href="/"
+                  to="/"
                   style={{ cursor: "pointer" }}
                   onClick={handleLogout}
                 >
                   Logout
-                </a>
+                </Link>
               </li>
             ) : (
               <li>

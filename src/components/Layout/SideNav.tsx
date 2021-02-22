@@ -47,14 +47,10 @@ const SideNav = ({ match }: RouteComponentProps<TParams>) => {
           </Link>
         </div>
       </div>
-      {currentUser ? (
-        <div className="sb-sidenav-footer">
-          <div className="small">Logged in as:</div>
-          {currentUser.displayName}
-        </div>
-      ) : (
-        ""
-      )}
+      <div className="sb-sidenav-footer">
+        <div className="small">Logged in as:</div>
+        {currentUser.displayName}
+      </div>
     </nav>
   );
 };
