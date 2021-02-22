@@ -1,10 +1,10 @@
 import { RouteComponentProps } from "react-router-dom";
 import { useHistory, Redirect } from "react-router-dom";
-import withSideNavLayout from "../Layout/withSideNavLayout";
-import { createTask, getProjectById } from "../../store/projects";
+import withSideNavLayout from "../../Layout/withSideNavLayout";
+import { createTask, getProjectById } from "../../../store/projects";
 import { useSelector, useDispatch } from "react-redux";
-import TaskForm from "./TaskForm";
-import { BasicTask } from "../../api/tasksApi";
+import TaskForm from "../TaskForm";
+import { BasicTask } from "../../../api/tasksApi";
 
 interface TParams {
   projectId: string;

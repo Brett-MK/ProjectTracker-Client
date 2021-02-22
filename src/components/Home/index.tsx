@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-import "./home.css";
 import cloud from "./images/cloud.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,84 +9,15 @@ import {
   faPlus,
   faLaptop,
 } from "@fortawesome/free-solid-svg-icons";
-
-import { Link, useHistory } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
-import { useSelector } from "react-redux";
-import { getAllProjects } from "../../store/projects";
 import Footer from "../Layout/Footer";
 import ContactForm from "./ContactForm";
+import Header from "./Header";
+import "./home.css";
 
 const Home = () => {
-  const { logout, currentUser } = useAuth();
-  const [, setError] = useState("");
-
-  const projects = useSelector(getAllProjects());
-  const history = useHistory();
-
-  async function handleLogout() {
-    setError("");
-    try {
-      await logout();
-      history.push("/");
-    } catch {
-      setError("Failed to log out");
-    }
-  }
-
   return (
     <div className="body-home">
-      <div className="navbar-home">
-        <div className="container-home flex-home">
-          <h1 className="logo h1-home">Projectiviti.</h1>
-          <nav>
-            <ul className="ul-home">
-              <li>
-                <Link className="a-home" to="/">
-                  Home
-                </Link>
-              </li>
-              {currentUser ? (
-                <>
-                  {projects.length !== 0 ? (
-                    <li>
-                      <Link
-                        className="a-home"
-                        to={`/projects/${projects[0]._id}/dashboard`}
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                  ) : (
-                    <li>
-                      <Link className="a-home" to="/projects/new">
-                        New Project
-                      </Link>
-                    </li>
-                  )}
-                  <li>
-                    <a
-                      className="a-home"
-                      href="/"
-                      style={{ cursor: "pointer" }}
-                      onClick={handleLogout}
-                    >
-                      Logout
-                    </a>
-                  </li>
-                </>
-              ) : (
-                <li>
-                  <Link className="a-home" to="/login">
-                    Login
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </nav>
-        </div>
-      </div>
-
+      <Header />
       <section className="showcase">
         <div className="container-home grid-home">
           <div className="showcase-text">

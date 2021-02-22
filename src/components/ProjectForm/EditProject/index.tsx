@@ -1,17 +1,17 @@
 import { RouteComponentProps } from "react-router-dom";
 import { useHistory, Redirect } from "react-router-dom";
-import withSideNavLayout from "../Layout/withSideNavLayout";
+import withSideNavLayout from "../../Layout/withSideNavLayout";
 import {
   getProjectById,
   updateProjectData,
   deleteProjectData,
-} from "../../store/projects";
+} from "../../../store/projects";
 import { useSelector, useDispatch } from "react-redux";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "react-bootstrap/Dropdown";
-import ProjectForm from "./ProjectForm";
-import { BasicProject } from "../../api/projectsApi";
+import ProjectForm from "../ProjectForm";
+import { BasicProject } from "../../../api/projectsApi";
 
 interface TParams {
   projectId: string;

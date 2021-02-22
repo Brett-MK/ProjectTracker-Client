@@ -1,11 +1,11 @@
 import { useHistory } from "react-router-dom";
-import { createProject } from "../../store/projects";
+import { createProject } from "../../../store/projects";
 import { useDispatch } from "react-redux";
-import ProjectForm from "./ProjectForm";
-import withAuthLayout from "../Layout/withAuthLayout";
-import { BasicProject } from "../../api/projectsApi";
+import ProjectForm from "../ProjectForm";
+import withAuthLayout from "../../Layout/withAuthLayout";
+import { BasicProject } from "../../../api/projectsApi";
 import { unwrapResult } from "@reduxjs/toolkit";
-import { AppDispatch } from "../../store/configureStore";
+import { AppDispatch } from "../../../store/configureStore";
 import Alert from "react-bootstrap/Alert";
 import { useState } from "react";
 
