@@ -190,7 +190,7 @@ pre {
 }
 
 /* Languages */
-.languages .flex {
+.languages .flex-home {
   flex-wrap: wrap;
 }
 
