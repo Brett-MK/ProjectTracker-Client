@@ -82,15 +82,7 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
             <option>Document Change</option>
           </Form.Control>
         </Form.Group>
-        <Form.Group as={Col}>
-          <Form.Label>Assigned To</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Assigned To"
-            value={assignedTo}
-            onChange={(e) => setAssignedTo(e.target.value)}
-          />
-        </Form.Group>
+
         {!isNewTask ? (
           <Form.Group as={Col}>
             <Form.Label>Status</Form.Label>
@@ -108,6 +100,15 @@ const TaskForm = ({ task, onSubmit, isNewTask = false }: Props) => {
         ) : (
           ""
         )}
+        <Form.Group as={Col}>
+          <Form.Label>Assigned To</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Assigned To"
+            value={assignedTo}
+            onChange={(e) => setAssignedTo(e.target.value)}
+          />
+        </Form.Group>
       </Form.Row>
       <Form.Label>Description</Form.Label>
       <TinyMceEditor value={description} onEditorChange={setDescription} />

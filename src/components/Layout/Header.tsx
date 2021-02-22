@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -10,6 +9,7 @@ import { useSelector } from "react-redux";
 import { getAllProjects } from "../../store/projects";
 import { Project } from "../../api/projectsApi";
 import { getProjectById } from "../../store/projects";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface TParams {
   projectId: string;
@@ -63,6 +63,9 @@ const Header = ({ match }: RouteComponentProps<TParams>) => {
           </Link>
         </Nav>
         <Nav>
+          <Link className="nav-link" to="/projects/new">
+            New Project
+          </Link>
           <NavDropdown title="Select a Project" id="basic-nav-dropdown">
             {projects.map((project) => (
               <NavDropdown.Item
