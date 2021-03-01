@@ -38,6 +38,8 @@ const Login = () => {
     } catch (error) {
       setError("Failed to login");
     }
+
+    setLoading(false);
   };
 
   return (
